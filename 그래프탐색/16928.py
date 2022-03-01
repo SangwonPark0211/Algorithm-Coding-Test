@@ -18,23 +18,17 @@ q.append((1,0))   # (position, cnt)
 visit[1] = 1
 while q:
     pos, cnt = q.popleft()
-    print(pos, cnt)
     if pos==100:
         print(cnt)
         break
-    if pos in ladder:
-        q.append((ladder[pos],cnt))
-        visit[ladder[pos]] = 1
-        continue
-    elif pos in snake:
-        continue
-    else:
-        for i in range(1,7):
-            if pos+i <= 100 and visit[pos+i] == 0:
-                q.append((pos+i,cnt+1))
-                visit[pos+i] = 1
-
-
-
-
-
+    for i in range(1,7):
+        new_p = pos+i
+        if new_p <= 100 and visit[new_p] == 0:
+            visit[new_p] = 1
+            if new_p in snake:
+                q.append((snake[new_p],cnt+1))
+            elif new_p in ladder:
+                q.append((ladder[new_p],cnt+1))
+            else:
+                q.append((new_p,cnt+1))
+            
