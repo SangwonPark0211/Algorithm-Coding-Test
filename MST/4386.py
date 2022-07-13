@@ -37,12 +37,3 @@ while cnt:
         heapq.heappush(hq, (toDist, toNode))
     
 print(ans)
-
-
-
-
-
-
-
-
-
